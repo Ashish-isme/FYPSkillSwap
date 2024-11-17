@@ -1,0 +1,43 @@
+/* Navbar.css */
+
+/* Full-width navbar with custom background color */
+
+.custom-navbar {
+  background-color: #007bff;
+  /* Bootstrap primary blue */
+  width: 100%;
+}
+
+/* Brand styling */
+
+.custom-brand {
+  color: #ffffff !important;
+  font-weight: bold;
+}
+
+/* Customize navbar links */
+
+.custom-nav-links .nav-link {
+  color: #ffffff !important;
+  margin-right: 15px;
+}
+
+/* Hover effect for links */
+
+.custom-nav-links .nav-link:hover {
+  color: #ffd700 !important;
+  /* Gold color on hover */
+}
+
+/* Signup button styling */
+
+.custom-signup {
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+.custom-signup:hover {
+  background-color: #ffffff;
+  color: #007bff;
+  border-color: #ffffff;
+}
