@@ -9,7 +9,7 @@ const test = (req, res) => {
 // Register Endpoint
 const registerUser = async (req, res) => {
   try {
-    const { name, email, password, department } = req.body;
+    const { name, email, password } = req.body;
 
     // Checking conditions
     if (!name) {
@@ -45,10 +45,6 @@ const registerUser = async (req, res) => {
       });
     }
 
-    if (!department) {
-      return res.json({ error: "Department field is required." });
-    }
-
     // Checking if the user already exists in the database
     const exist = await User.findOne({ email });
     if (exist) {
@@ -63,7 +59,6 @@ const registerUser = async (req, res) => {
       name,
       email,
       password: hashedPassword,
-      department, // Save the department
     });
 
     return res.json(user);
@@ -122,7 +117,7 @@ const getProfile = (req, res) => {
       res.json(user);
     });
   } else {
-    res.json(null);
+    res.json(null); //JWT tokn storage .
   }
 };
 

@@ -8,10 +8,6 @@ const userSchema = new Schema({
     unique: true,
   },
   password: String,
-  department: {
-    type: String,
-    enum: ["Sales", "Marketing", "Credit", "HR", "Support"],
-  },
 });
 
 const UserModel = mongoose.model("User", userSchema);

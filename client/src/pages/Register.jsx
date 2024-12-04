@@ -11,28 +11,23 @@ export default function Register() {
     name: "",
     email: "",
     password: "",
-    department: "",
   });
-
-  // make it fetch through API later
-  const departments = ["Sales", "Marketing", "Credit", "HR", "Support"];
 
   const registerUser = async (e) => {
     e.preventDefault();
-    const { name, email, password, department } = data;
+    const { name, email, password } = data;
     try {
       const response = await axios.post("/register", {
         name,
         email,
         password,
-        department,
       });
       const result = response.data;
 
       if (result.error) {
         toast.error(result.error);
       } else {
-        setData({ name: "", email: "", password: "", department: "" }); // Clear form fields
+        setData({ name: "", email: "", password: "" }); // Clear form fields
         toast.success("Registration successful! Please log in.");
         navigate("/login");
       }
@@ -95,24 +90,6 @@ export default function Register() {
               onChange={(e) => setData({ ...data, password: e.target.value })}
             />
             <label htmlFor="password">Password</label>
-          </div>
-
-          <div className="form-floating mb-4">
-            <select
-              className="form-control"
-              id="department"
-              required
-              value={data.department}
-              onChange={(e) => setData({ ...data, department: e.target.value })}
-            >
-              <option value="">None</option>
-              {departments.map((dept, index) => (
-                <option key={index} value={dept}>
-                  {dept}
-                </option>
-              ))}
-            </select>
-            <label htmlFor="department">Department</label>
           </div>
 
           <div className="d-flex justify-content-between align-items-center mb-4">
