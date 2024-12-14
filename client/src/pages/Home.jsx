@@ -1,9 +1,13 @@
 import React from "react";
+import FeaturedClasses from "../components/FeaturedClasses";
 
-export default function Home() {
+const Home = () => {
   return (
-    <>
-      <h1>Welcome to SkillSwap</h1>
-    </>
+    <div>
+      <h1>Home Page</h1>
+      <FeaturedClasses />
+    </div>
   );
-}
+};
+
+export default Home;
