@@ -1,5 +1,6 @@
 const { hashPassword, comparePassword } = require("../helpers/auth");
 const User = require("../models/user");
+const Course = require("../models/course");
 const jwt = require("jsonwebtoken");
 
 const test = (req, res) => {
@@ -9,9 +10,10 @@ const test = (req, res) => {
 // Register Endpoint
 const registerUser = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password, confirmpassword } = req.body;
 
     // Checking conditions
+
     if (!name) {
       return res.json({ error: "Name field is empty" });
     }
@@ -121,9 +123,41 @@ const getProfile = (req, res) => {
   }
 };
 
+//Course Creation Enndpoint // Ask question to sir here, about whether all the backend functionality should be kept at the same place.
+const createCourse = async (req, res) => {
+  try {
+    const { courseTitle, courseCatg, courseDesc, coursePrice, courseSCPrice } =
+      req.body;
+
+    // Checking if the course title is already taken
+    const exist = await Course.findOne({ courseTitle });
+    if (exist) {
+      return res.json({ error: "Course Name is already taken" });
+    }
+
+    const course = await Course.create({
+      courseTitle,
+      courseCatg,
+      courseDesc,
+      coursePrice,
+      courseSCPrice,
+    });
+  } catch (error) {
+    console.error("Error creating course:", error.message);
+
+    if (error.name === "ValidationError") {
+      const messages = Object.values(error.errors).map((val) => val.message);
+      return res.status(400).json({ error: messages.join(", ") });
+    }
+
+    return res.status(500).json({ error: "Internal server error" });
+  }
+};
+
 module.exports = {
   test,
   registerUser,
   loginUser,
   getProfile,
+  createCourse,
 };

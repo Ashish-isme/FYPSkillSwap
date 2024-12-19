@@ -12,10 +12,10 @@ const userSchema = new mongoose.Schema({
     type: String,
   },
   coursePrice: {
-    type: Int,
+    type: Number,
   },
   courseSCprice: {
-    type: Int,
+    type: Number,
   },
 });
 

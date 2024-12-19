@@ -11,6 +11,7 @@ export default function Register() {
     name: "",
     email: "",
     password: "",
+    confirmpassword: "",
   });
 
   const registerUser = async (e) => {
@@ -21,6 +22,7 @@ export default function Register() {
         name,
         email,
         password,
+        confirmpassword,
       });
       const result = response.data;
 
@@ -90,6 +92,21 @@ export default function Register() {
               onChange={(e) => setData({ ...data, password: e.target.value })}
             />
             <label htmlFor="password">Password</label>
+          </div>
+
+          <div className="form-floating mb-4">
+            <input
+              type="password"
+              className="form-control"
+              id="confirmpassword"
+              placeholder="Confirm Password"
+              required
+              value={data.confirmpassword}
+              onChange={(e) =>
+                setData({ ...data, confirmpassword: e.target.value })
+              }
+            />
+            <label htmlFor="password">Confirm Password</label>
           </div>
 
           <div className="d-flex justify-content-between align-items-center mb-4">
